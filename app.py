@@ -18,8 +18,7 @@ def deduct_resources(coffee_type):
 prompt = user_input()
 while prompt != 'off':
     if prompt == 'report':
-        for item in coffee_machine.resources:
-            print(item)
+            print(f'Water: {coffee_machine.resources[0]}ml\nMilk: {coffee_machine.resources[1]}ml\nCoffee: {coffee_machine.resources[2]}g\nMoney: ${coffee_machine.resources[3]}')          
     elif prompt == 'espresso':
         deduct_resources(espresso)
     elif prompt =='latte':
