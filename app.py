@@ -12,7 +12,7 @@ while prompt != 'off':
     if prompt == 'report':
             print(f'Water: {coffee_machine.resources[0]}ml\nMilk: {coffee_machine.resources[1]}ml\nCoffee: {coffee_machine.resources[2]}g\nMoney: ${coffee_machine.resources[3]}')          
     
-    if prompt in [espresso.name, latte.name, cappuccino.name]:
+    elif prompt in [espresso.name, latte.name, cappuccino.name]:
         for coffee in [espresso.name, latte.name, cappuccino.name]:
             if prompt == coffee:
                 coffee_kinds = {'espresso': espresso,'latte': latte,'cappuccino':cappuccino}
