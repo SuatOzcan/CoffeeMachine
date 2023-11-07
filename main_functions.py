@@ -1,6 +1,11 @@
 from coffee_types import Cappuccino, Espresso, Latte
 from coffee_machine import Coffee_Machine
 
+coffee_machine = Coffee_Machine()
+espresso = Espresso()
+cappuccino = Cappuccino()
+latte = Latte()
+
 def user_input():
     prompt = input("What would you like? espresso, latte, capuccino.\n")
     return prompt
@@ -28,3 +33,28 @@ def deduct_resources(coffee_machine,coffee_type, inserted_money):
             print(f'Enjoy your {coffee_type.name}!')
     else:
          print('Please insert more money.')
+
+def menu():
+    prompt = user_input()
+    while prompt != 'off':
+        if prompt == 'report':
+                print(f'Water: {coffee_machine.resources[0]}ml\nMilk: {coffee_machine.resources[1]}ml\nCoffee: {coffee_machine.resources[2]}g\nMoney: ${coffee_machine.resources[3]}')          
+    
+        elif prompt in [espresso.name, latte.name, cappuccino.name]:
+            for coffee in [espresso.name, latte.name, cappuccino.name]:
+                if prompt == coffee:
+                    coffee_kinds = {'espresso': espresso,'latte': latte,'cappuccino':cappuccino}
+                    coffee_type = coffee_kinds[prompt]
+                    break
+
+            number_checker = True
+            while number_checker:
+                try:
+                    inserted_money = float(input(f'Please insert ${coffee_type.price}.\n'))
+                    break
+                except:
+                    print('Please insert in numbers.')
+
+            deduct_resources(coffee_machine,coffee_type, inserted_money)
+
+        prompt = user_input()
