@@ -11,14 +11,14 @@ prompt = user_input()
 while prompt != 'off':
     if prompt == 'report':
             print(f'Water: {coffee_machine.resources[0]}ml\nMilk: {coffee_machine.resources[1]}ml\nCoffee: {coffee_machine.resources[2]}g\nMoney: ${coffee_machine.resources[3]}')          
-    elif prompt == 'espresso':
-        inserted_money = float(input('Please insert $4.\n'))
-        deduct_resources(coffee_machine, espresso, inserted_money)
-    elif prompt =='latte':
-        inserted_money = float(input('Please insert $5.\n'))
-        deduct_resources(coffee_machine,latte, inserted_money)
-    elif prompt == 'cappuccino':
-        inserted_money = float(input('Please insert $2.\n'))
-        deduct_resources(coffee_machine, cappuccino, inserted_money)
     
+    if prompt in [espresso.name, latte.name, cappuccino.name]:
+        for coffee in [espresso.name, latte.name, cappuccino.name]:
+            if prompt == coffee:
+                coffee_kinds = {'espresso': espresso,'latte': latte,'cappuccino':cappuccino}
+                coffee_type = coffee_kinds[prompt]
+                break
+        inserted_money = float(input(f'Please insert ${coffee_type.price}.\n'))
+        deduct_resources(coffee_machine,coffee_type, inserted_money)
+
     prompt = user_input()
