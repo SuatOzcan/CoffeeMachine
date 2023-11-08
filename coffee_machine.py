@@ -9,4 +9,3 @@ class Coffee_Machine():
     def give_resources(self):
         self.resources = [self.water, self.milk, self.coffee, self.money]
         return self.resources
-    

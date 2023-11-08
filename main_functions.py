@@ -11,18 +11,17 @@ def user_input():
     return prompt
 
 def deduct_resources(coffee_machine,coffee_type, inserted_money):
-
-    resource_checker = True
-
-    for i in range((coffee_machine.resources.__len__())):
-         if coffee_machine.resources[i] < coffee_type.costs[i]:
-              resource_checker = False
-
+    
     if inserted_money > coffee_type.price:
          refund = inserted_money - coffee_type.price
          print(f'Here is your refund of ${refund}.')
 
-    enough_money = inserted_money >= coffee_type.price
+    resource_checker = True
+    for i in range((coffee_machine.resources.__len__())):
+         if coffee_machine.resources[i] < coffee_type.costs[i]:
+              resource_checker = False
+
+    enough_money = inserted_money >= coffee_type.price 
 
     if resource_checker and enough_money:
         for i in range(coffee_machine.resources.__len__()):
@@ -31,6 +30,12 @@ def deduct_resources(coffee_machine,coffee_type, inserted_money):
                 continue
             coffee_machine.resources[i] = coffee_machine.resources[i] + coffee_type.costs[i]
             print(f'Enjoy your {coffee_type.name}!')
+    elif resource_checker == False:
+        print(f'We are sorry. Machine does not have enough resources for this kind of coffee.')
+        if inserted_money >= coffee_type.price:
+            print(f'Here is your refund of ${coffee_type.price}.')
+        elif inserted_money < coffee_type.price:
+            print(f'Here is your refund of ${inserted_money}.')
     else:
          print('Please insert more money.')
 
